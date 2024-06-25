@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-
 const pizzaData = [
   {
     name: 'Focaccia',
@@ -56,6 +55,7 @@ function App() {
     </div>
   );
 }
+
 function Header() {
   return (
     <header className="header">
@@ -72,8 +72,8 @@ function Menu() {
       {numPizzas > 0 ? (
         <>
           <p>
-            Authentic Italian cuisine. 6 creative dishes to choose from. All
-            from our stone over, all organic, all delicious.
+            Authentic Italian Cuisine. 6 creative dishes to choose from. All
+            from our stone oven, all organic, all delicious.
           </p>
           <ul className="pizzas">
             {pizzas.map(pizza => (
@@ -82,23 +82,9 @@ function Menu() {
           </ul>
         </>
       ) : (
-        <p>We're still working on our menu. Please come back later.</p>
+        <p>We're still working on our menu. Please come back later :)</p>
       )}
     </main>
-  );
-}
-function Pizza({ pizzaObj }) {
-  // if (pizzaObj.soldOut) return null;
-
-  return (
-    <li className={`pizza ${pizzaObj.soldOut ? 'sold-out' : ''}`}>
-      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
-      <div>
-        <h3>{pizzaObj.name}</h3>
-        <p>{pizzaObj.ingredients}</p>
-        <span>{pizzaObj.soldOut ? 'SOLD OUT' : pizzaObj.price}</span>
-      </div>
-    </li>
   );
 }
 function Footer() {
@@ -106,6 +92,8 @@ function Footer() {
   const openHour = 12;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
+
+  // isOpen ? alert("We're currently open") : alert("Sorry we're closed");
   return (
     <footer className="footer">
       {isOpen ? (
@@ -118,7 +106,7 @@ function Footer() {
     </footer>
   );
 }
-function Order({ closeHour, openHour }) {
+function Order({ openHour, closeHour }) {
   return (
     <div className="order">
       <p>
@@ -129,8 +117,21 @@ function Order({ closeHour, openHour }) {
     </div>
   );
 }
+function Pizza({ pizzaObj }) {
+  return (
+    <li className={`pizza ${pizzaObj.soldOut ? 'sold-out' : ''}`}>
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
+      <div>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
 
+        <span>{pizzaObj.soldOut ? 'SOLD OUT' : pizzaObj.price}</span>
+      </div>
+    </li>
+  );
+}
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <App />
